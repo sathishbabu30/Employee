@@ -1,0 +1,30 @@
+.container {
+  background-color: #f8f9fa; /* Light background for better contrast */
+  border-radius: 0.5rem; /* Rounded corners for the container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+h4 {
+  color: #343a40; /* Dark color for the header */
+}
+
+.table {
+  margin-top: 20px; /* Space between form and table */
+}
+
+.table th {
+  background-color: #007bff; /* Primary color for table header */
+  color: white; /* White text on header */
+}
+
+.table td {
+  background-color: #ffffff; /* White background for table rows */
+}
+
+.btn {
+  transition: background-color 0.3s; /* Smooth transition for button hover */
+}
+
+.btn:hover {
+  background-color: #0056b3; /* Darker shade for hover effect */
+}

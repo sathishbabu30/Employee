@@ -1,0 +1,113 @@
+<div class="container-fluid" style="height: 100vh;">
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="shadow w-50 p-5">
+      <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+        <h4 class="text-center">Employee Registration</h4>
+
+        <div class="mb-3">
+          <label for="employeeId">Employee ID</label>
+          <input id="employeeId" required #employeeId="ngModel" [(ngModel)]="employeeToUpdate.id" name="employeeId" type="text" class="form-control" placeholder="Enter Employee ID">
+          <div *ngIf="employeeId.invalid && employeeId.touched" class="text-danger">
+            <small *ngIf="employeeId.errors?.['required']">Required</small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="name">Name</label>
+          <input id="name" required #name="ngModel" [(ngModel)]="employeeToUpdate.name" name="name" type="text" class="form-control" placeholder="Enter Employee Name">
+          <div *ngIf="name.invalid && name.touched" class="text-danger">
+            <small *ngIf="name.errors?.['required']">Required</small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="position">Position</label>
+          <input id="position" required #position="ngModel" [(ngModel)]="employeeToUpdate.position" name="position" type="text" class="form-control" placeholder="Enter Position">
+          <div *ngIf="position.invalid && position.touched" class="text-danger">
+            <small *ngIf="position.errors?.['required']">Required</small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="salary">Salary</label>
+          <input id="salary" required #salary="ngModel" [(ngModel)]="employeeToUpdate.salary" name="salary" type="number" class="form-control" placeholder="Enter Salary">
+          <div *ngIf="salary.invalid && salary.touched" class="text-danger">
+            <small *ngIf="salary.errors?.['required']">Required</small>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Employee ID</th>
+          <th>Name</th>
+          <th>Position</th>
+          <th>Salary</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employeeDetails">
+          <td>{{ employee.id }}</td>
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.position }}</td>
+          <td>{{ employee.salary }}</td>
+          <td>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" (click)="edit(employee)">Edit</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="deleteEmployee(employee)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Employee</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form #updateForm="ngForm" (ngSubmit)="updateEmployee()">
+            <div class="mb-3">
+              <label for="editEmployeeId">Employee ID</label>
+              <input id="editEmployeeId" required [(ngModel)]="employeeToUpdate.id" name="editEmployeeId" type="text" class="form-control" placeholder="Enter Employee ID" readonly>
+            </div>
+
+            <div class="mb-3">
+              <label for="editName">Name</label>
+              <input id="editName" required [(ngModel)]="employeeToUpdate.name" name="editName" type="text" class="form-control" placeholder="Enter Employee Name">
+            </div>
+
+            <div class="mb-3">
+              <label for="editPosition">Position</label>
+              <input id="editPosition" required [(ngModel)]="employeeToUpdate.position" name="editPosition" type="text" class="form-control" placeholder="Enter Position">
+            </div>
+
+            <div class="mb-3">
+              <label for="editSalary">Salary</label>
+              <input id="editSalary" required [(ngModel)]="employeeToUpdate.salary" name="editSalary" type="number" class="form-control" placeholder="Enter Salary">
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
